@@ -2,8 +2,9 @@
 # - calc_freq_over_time() - creates a line graph of texting frequency over time
 # - calc_num_words() - calculates number of total words sent by each party
 # - calc_avg_text_len() - calculates average text length
-# - [tbi] creates an average time plot of texts for each user
-# - most_used_emoji() determines the most used emoji for each party
+# - calc_avg_texts_per_hour() - creates an radar time plot of total texts for each user
+# - most_used_emoji() - determines the most used emoji for each party
+# - who_texts_first() - determines percentages for who sends the first text of the day
 
 import os, sys
 import datetime
@@ -18,10 +19,11 @@ import operator
 file_name = "whatsapp.txt"
 
 def main():
-    #calc_freq_over_time(f)
+    ### GROUP 1: outputs svgs to ./whatsappimages ###
+    #calc_freq_over_time()
+    #calc_avg_texts_per_hour()
 
-    calc_avg_texts_per_hour()
-
+    ### GROUP 2: outputs command line analysis ###
     melanie_words, noah_words = calc_num_words()
     print("Number of words sent: Melanie - %d. Noah - %d" % (melanie_words, noah_words))
 
@@ -29,7 +31,10 @@ def main():
     print("Average num of words per text: Melanie - %.2f. Noah - %.2f" % (melanie_avg, noah_avg))
 
     emoji, num_times_used = most_used_emoji()
-    print("Most used emoji: %c, which was used %d times" % (emoji, num_times_used))
+    print("Most used emoji: %c, used %d times" % (emoji, num_times_used))
+
+    melanie_first, noah_first = who_texts_first()
+    print("Melanie texted first %.2f%% of the time, while Noah texted first %.2f%% of the time." % (melanie_first, noah_first))
 
 # Helper function that gets a list of datetime objects representing each text message 
 def get_texts_per_day(f):
@@ -192,6 +197,38 @@ def calc_avg_texts_per_hour():
     fig.write_image("whatsappimages/hourlytextsboth.svg")
     f.close()
 
+def who_texts_first():
+    f = open(file_name, "r", encoding='utf-8')
+
+    m_texted_first = 0
+    n_texted_first = 0
+    total = 0
+
+    # this represents the oldest possible date
+    last_date = datetime.date(datetime.MINYEAR, 1, 1)
+
+    for text in f:
+        total += 1
+
+        # grab the date-time string
+        dtstr = text[0: text.find("-")-1]
+
+        # if it matches the expected format (m/d/y, t:tt AM/PM)
+        if (re.match("\d{1,2}\/\d{1,2}\/\d{2}, \d{1,2}:\d{2} [AP]M", dtstr)):
+            
+            # parse it into a datetime object
+            date = datetime.datetime.strptime(dtstr, "%m/%d/%y, %I:%M %p").date()
+
+            # if the date is more recent than our last found date, we can conclude that it's a new day
+            if (date > last_date):
+                
+                # check who sent the first text and add to our running subtotals
+                text = text[text.find("-")+2:len(text)-1]
+                if (len(text) > 0):
+                    if (text[0] == "M"): m_texted_first += 1
+                    elif (text[0] == "N"): n_texted_first += 1
+    f.close()
+    return(m_texted_first/total, n_texted_first/total)
 
 if __name__ == "__main__":
     main()
