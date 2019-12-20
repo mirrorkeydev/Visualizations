@@ -3,23 +3,34 @@
 # - calc_num_words() - calculates number of total words sent by each party
 # - calc_avg_text_len() - calculates average text length
 # - [tbi] creates an average time plot of texts for each user
-# - [tbi] determines the most used emoji for each party
+# - most_used_emoji() determines the most used emoji for each party
 
 import os, sys
 from datetime import datetime
 import plotly.express as px
 import re
 import pandas as pd
+import emoji
+import operator
 
 def main():
     f = open("whatsapp.txt", "r", encoding='utf-8')
     #calc_freq_over_time(f)
-    melanie_words, noah_words = calc_num_words(f)
-    print("Number of words sent: Melanie - " + str(melanie_words) + ". Noah - " + str(noah_words))
     f.close()
+
+    f = open("whatsapp.txt", "r", encoding='utf-8')
+    melanie_words, noah_words = calc_num_words(f)
+    print("Number of words sent: Melanie - %d. Noah - %d" % (melanie_words, noah_words))
+    f.close()
+
     f = open("whatsapp.txt", "r", encoding='utf-8')
     melanie_avg, noah_avg = calc_avg_text_len(f)
     print("Average num of words per text: Melanie - %.2f. Noah - %.2f" % (melanie_avg, noah_avg))
+    f.close()
+
+    f = open("whatsapp.txt", "r", encoding='utf-8')
+    emoji, num_times_used = most_used_emoji(f)
+    print("Most used emoji: %c, which was used %d times" % (emoji, num_times_used))
 
 # Helper function that gets a list of datetime objects representing each text message 
 def get_texts_per_day(f):
@@ -54,11 +65,13 @@ def get_texts_per_day(f):
     df = pd.DataFrame.from_dict(texts_per_day, orient='index', columns = ['Date', 'Number of Texts', 'Person'])
     return df
 
+# Outputs an line chart (.svg) displaying the frequency of texts per day over the entire time period
 def calc_freq_over_time(f):
     df = get_texts_per_day(f)
     fig = px.line(df, x="Date", y="Number of Texts", title='Frequency of Text Messages', color='Person')
     fig.write_image("whatsappimages/frequencybyday.svg")
 
+# Calculates the number of words each party sent over the entire time period
 def calc_num_words(f):
     m_sumwords = 0
     n_sumwords = 0
@@ -73,6 +86,7 @@ def calc_num_words(f):
                 n_sumwords += len(text.split(" "))
     return (m_sumwords, n_sumwords)
 
+# Calculates the average text length for each party
 def calc_avg_text_len(f):
     m_sum_len = 0
     m_total_texts = 0
@@ -95,6 +109,28 @@ def calc_avg_text_len(f):
                 n_sum_len += len(text.split(" "))
 
     return ( m_sum_len/m_total_texts , n_sum_len/n_total_texts)
+
+# This function taken from: https://gist.github.com/jezdez/0185e35704dbdf3c880f
+def is_emoji(s):
+    return s in emoji.UNICODE_EMOJI
+
+# Calculate what the most used emoji between both party's combined texts is
+def most_used_emoji(f):
+    emojis = {}
+
+    # including this string speeds up execution time as it disqualifies letters early on in the process from being emojis
+    # the order of characters is determined by letter frequency in word averages (http://letterfrequency.org/)
+    common_chars = " aetaoinsrhldcumfpgwybvkxjqzAETAOINSRHLDCUMFPGWYBVKXJQZ1234567890,<.>/?;:\'\"[{]}-_=+\|]\\`~!@#$%^&*()"
+    for text in f:
+        for char in text:
+            if char not in common_chars and is_emoji(char):
+                if char in emojis:
+                    emojis[char] += 1 
+                else:
+                    emojis[char] = 1
+
+    # this grabs the most used emoji from the dictionary of emojis
+    return(max(emojis.keys(), key=(lambda k: emojis[k])), emojis[max(emojis, key=emojis.get)])
 
 if __name__ == "__main__":
     main()
