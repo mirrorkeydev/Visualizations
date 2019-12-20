@@ -1,6 +1,6 @@
 # This script takes a WhatsApp chat history:
-# - calc_freq_over_time(f) - creates a line graph of texting frequency over time
-# - [tbi] calculates number of total words sent by each party
+# - calc_freq_over_time() - creates a line graph of texting frequency over time
+# - calc_num_words() - calculates number of total words sent by each party
 # - [tbi] calculates average text length
 # - [tbi] creates an average time plot of texts for each user
 # - [tbi] determines the most used emoji for each party
@@ -13,7 +13,9 @@ import pandas as pd
 
 def main():
     f = open("whatsapp.txt", "r", encoding='utf-8')
-    calc_freq_over_time(f)
+    #calc_freq_over_time(f)
+    melanie_words, noah_words = calc_num_words(f)
+    print("Number of words sent: Melanie - " + str(melanie_words) + ". Noah - " + str(noah_words))
     
 # Helper function that gets a list of datetime objects representing each text message 
 def get_texts_per_day(f):
@@ -51,8 +53,22 @@ def get_texts_per_day(f):
 def calc_freq_over_time(f):
     df = get_texts_per_day(f)
     fig = px.line(df, x="Date", y="Number of Texts", title='Frequency of Text Messages', color='Person')
-    fig.show()
     fig.write_image("whatsappimages/frequencybyday.svg")
+
+def calc_num_words(f):
+    m_sumwords = 0
+    n_sumwords = 0
+    for text in f:
+        text = text[text.find("-")+2:len(text)-1]
+        if (len(text) > 0):
+            if (text[0] == "M"):
+                text = text[text.find(":")+1:len(text)-1]
+                m_sumwords += len(text.split(" "))
+            if (text[0] == "N"):
+                text = text[text.find(":")+1:len(text)-1]
+                n_sumwords += len(text.split(" "))
+    return (m_sumwords, n_sumwords)
+
 
 if __name__ == "__main__":
     main()
