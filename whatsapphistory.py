@@ -5,6 +5,7 @@
 # - calc_avg_texts_per_hour() - creates an radar time plot of total texts for each user
 # - most_used_emoji() - determines the most used emoji for each party
 # - who_texts_first() - determines percentages for who sends the first text of the day
+# - rarest_word() - finds the rarest word texted by each person
 
 import os, sys
 import datetime
@@ -13,6 +14,8 @@ import re
 import pandas as pd
 import emoji
 import operator
+import wordfreq
+import enchant
 
 ### GLOBAL SETTINGS ###
 # name of whatsapp chat history txt file to open:
@@ -23,7 +26,7 @@ def main():
     #calc_freq_over_time()
     #calc_avg_texts_per_hour()
 
-    ### GROUP 2: outputs command line analysis ###
+    ### GROUP 2: outputs command line analysis ###    
     melanie_words, noah_words = calc_num_words()
     print("Number of words sent: Melanie - %d. Noah - %d" % (melanie_words, noah_words))
 
@@ -35,6 +38,9 @@ def main():
 
     melanie_first, noah_first = who_texts_first()
     print("Melanie texted first %.2f%% of the time, while Noah texted first %.2f%% of the time." % (melanie_first, noah_first))
+
+    melanie_word, noah_word = rarest_word()
+    print("Melanie's rarest word: %s (rarity: %.2f). Noah's rarest word: %s (rarity: %.2f)" % (melanie_word[1],melanie_word[0], noah_word[1], noah_word[0]))
 
 # Helper function that gets a list of datetime objects representing each text message 
 def get_texts_per_day(f):
@@ -229,6 +235,32 @@ def who_texts_first():
                     elif (text[0] == "N"): n_texted_first += 1
     f.close()
     return(m_texted_first/total, n_texted_first/total)
+
+def rarest_word():
+    f = open(file_name, "r", encoding='utf-8')
+    d = enchant.Dict("en_US")
+
+    lowest_freq_m = [8, ""]
+    lowest_freq_n = [8, ""]
+
+    for text in f:
+        words = text.split(" ")
+        for word in words:
+            # check that words is a valid english word and that we have a frequency
+            if (len(word) > 0 and d.check(word) and wordfreq.zipf_frequency(word, 'en') != 0):
+                freq = wordfreq.zipf_frequency(word, 'en')
+                text = text[text.find("-")+2:len(text)-1]
+                if (len(text) > 0):
+                    if (text[0] == "M" and freq < lowest_freq_m[0]):
+                        lowest_freq_m[0] = freq
+                        lowest_freq_m[1] = word
+                    elif (text[0] == "N" and freq < lowest_freq_n[0]):
+                        lowest_freq_n[0] = freq
+                        lowest_freq_n[1] = word
+                    
+    f.close()
+    return (lowest_freq_m, lowest_freq_n)
+
 
 if __name__ == "__main__":
     main()
