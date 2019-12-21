@@ -6,6 +6,7 @@
 # - most_used_emoji() - determines the most used emoji for each party
 # - who_texts_first() - determines percentages for who sends the first text of the day
 # - rarest_word() - finds the rarest word texted by each person
+# - first_text_freq() - finds the most frequent first text (daily basis) sent by each person
 
 import os, sys
 import datetime
@@ -16,6 +17,7 @@ import emoji
 import operator
 import wordfreq
 import enchant
+import string
 
 ### GLOBAL SETTINGS ###
 # name of whatsapp chat history txt file to open:
@@ -26,7 +28,7 @@ def main():
     #calc_freq_over_time()
     #calc_avg_texts_per_hour()
 
-    ### GROUP 2: outputs command line analysis ###    
+    ### GROUP 2: outputs command line analysis ###
     melanie_words, noah_words = calc_num_words()
     print("Number of words sent: Melanie - %d. Noah - %d" % (melanie_words, noah_words))
 
@@ -38,6 +40,9 @@ def main():
 
     melanie_first, noah_first = who_texts_first()
     print("Melanie texted first %.2f%% of the time, while Noah texted first %.2f%% of the time." % (melanie_first, noah_first))
+
+    melanie_first_word, noah_first_word = first_text_freq()
+    print("Melanie's most frequent first text was \'%s\', and Noah's was \'%s\'." % (melanie_first_word, noah_first_word))
 
     melanie_word, noah_word = rarest_word()
     print("Melanie's rarest word: %s (rarity: %.2f). Noah's rarest word: %s (rarity: %.2f)" % (melanie_word[1],melanie_word[0], noah_word[1], noah_word[0]))
@@ -214,7 +219,6 @@ def who_texts_first():
     last_date = datetime.date(datetime.MINYEAR, 1, 1)
 
     for text in f:
-        total += 1
 
         # grab the date-time string
         dtstr = text[0: text.find("-")-1]
@@ -227,6 +231,8 @@ def who_texts_first():
 
             # if the date is more recent than our last found date, we can conclude that it's a new day
             if (date > last_date):
+                total += 1
+                last_date = date
                 
                 # check who sent the first text and add to our running subtotals
                 text = text[text.find("-")+2:len(text)-1]
@@ -261,6 +267,48 @@ def rarest_word():
     f.close()
     return (lowest_freq_m, lowest_freq_n)
 
+def first_text_freq():
+    f = open(file_name, "r", encoding='utf-8')
+
+    m_texted_first = {}
+    n_texted_first = {}
+
+    # this represents the oldest possible date
+    last_date = datetime.date(datetime.MINYEAR, 1, 1)
+
+    for text in f:
+
+        # grab the date-time string
+        dtstr = text[0: text.find("-")-1]
+
+        # if it matches the expected format (m/d/y, t:tt AM/PM)
+        if (re.match("\d{1,2}\/\d{1,2}\/\d{2}, \d{1,2}:\d{2} [AP]M", dtstr)):
+            
+            # parse it into a datetime object
+            date = datetime.datetime.strptime(dtstr, "%m/%d/%y, %I:%M %p").date()
+
+            # if the date is more recent than our last found date, we can conclude that it's a new day
+            if (date > last_date):
+                last_date = date
+                
+                # check who sent the first text and add to our running subtotals
+                text = text[text.find("-")+2:len(text)-1]
+                first_word = text[text.find(":")+2:len(text)-1].split(" ")[0].translate(str.maketrans('', '', string.punctuation))
+                if (len(text) > 0 and len(first_word) > 0 and 
+                first_word != "Media" and first_word != "I" and first_word != "I'm" and first_word != "Im"):
+                    if (text[0] == "M"):
+                        if (first_word in m_texted_first):
+                            m_texted_first[first_word] += 1
+                        else:
+                            m_texted_first[first_word] = 1
+                    elif (text[0] == "N"):
+                        if (first_word in n_texted_first):
+                            n_texted_first[first_word] += 1
+                        else:
+                            n_texted_first[first_word] = 1
+    f.close()
+    return (max(m_texted_first.keys(), key=(lambda k: m_texted_first[k])), 
+            max(n_texted_first.keys(), key=(lambda k: n_texted_first[k])))
 
 if __name__ == "__main__":
     main()
