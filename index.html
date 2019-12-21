@@ -1,17 +1,115 @@
 <!DOCTYPE html>
 <style>
-html, body {
-    background-color: black;
+* {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f7f8ff;
 }
 
-embed {
-    height: -webkit-fill-available;
+.title {
+  font-size: large;
+  font-weight: 900;
 }
+
+h4 {
+  font-weight: normal;
+}
+
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #737aff
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+.main {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.link-box {
+  width: 250px;
+  margin: 40px;
+  padding: 20px;
+  border: 3px #737aff solid;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: block;
+  filter: grayscale(100%);
+  transition: all .2s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+.header{
+  color: #737aff;
+  font-size: xx-large;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+h1 {
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 0px;
+}
+
+.name {
+  font-size: large;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
 </style>
+
 <html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+  </head>
   <body>
-    <figure>
-      <embed type="image/svg+xml" src="./netflixhistorychart.svg" />
-    </figure>
+    <div class="header">
+      <h1>Visualizations</h1>
+      <a class="name" href="https://github.com/mirrorkeydev">Melanie Gutzmann</a>
+    </div>
+    <div class="main">
+      <div class="link-box">
+        <a href="public/whatsapp.html">
+          <img src="public/whatsappthumb.png">
+        </a>
+        <div class="text">
+        <a class="title" href="public/whatsapp.html">A Year of WhatsApp Conversation (2019)</a>
+          <h4>Data Source: <a href="https://faq.whatsapp.com/en/android/23756533/">Exported WhatsApp Chat</a></h4>
+          <h4>Data Processing: <a href="https://github.com/mirrorkeydev/Visualizations/blob/master/whatsapphistory.py">Python, Plotly</a></h4>
+          <h4>Formatting: <a href="https://inkscape.org/">Inkscape</a></h4>  
+        </div>    
+      </div>
+      <div class="link-box">
+        <a href="public/netflix.html">
+          <img src="public/netflixthumb.png">
+        </a>
+        <div class="text">
+          <a class="title" href="public/netflix.html">Six Years of Netflix Binging History (2019)</a>
+          <h4>Data Source: <a href="https://www.netflix.com/viewingactivity">Netflix Viewing Activity</a></h4>
+          <h4>Data Processing: <a href="https://github.com/mirrorkeydev/Visualizations/blob/master/netflixhistory.py">Python, Pygal</a></h4>    
+        </div>
+      </div>
+    </div>
   </body>
 </html>
