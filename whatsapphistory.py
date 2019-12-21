@@ -29,23 +29,23 @@ def main():
     #calc_avg_texts_per_hour()
 
     ### GROUP 2: outputs command line analysis ###
-    melanie_words, noah_words = calc_num_words()
-    print("Number of words sent: Melanie - %d. Noah - %d" % (melanie_words, noah_words))
+    m_words, n_words = calc_num_words()
+    print("Number of words sent: M - %d. N - %d" % (m_words, n_words))
 
-    melanie_avg, noah_avg = calc_avg_text_len()
-    print("Average num of words per text: Melanie - %.2f. Noah - %.2f" % (melanie_avg, noah_avg))
+    m_avg, n_avg = calc_avg_text_len()
+    print("Average num of words per text: M - %.2f. N - %.2f" % (m_avg, n_avg))
 
     emoji, num_times_used = most_used_emoji()
     print("Most used emoji: %c, used %d times" % (emoji, num_times_used))
 
-    melanie_first, noah_first = who_texts_first()
-    print("Melanie texted first %.2f%% of the time, while Noah texted first %.2f%% of the time." % (melanie_first, noah_first))
+    m_first, n_first = who_texts_first()
+    print("M texted first %.2f%% of the time, while N texted first %.2f%% of the time." % (m_first, n_first))
 
-    melanie_first_word, noah_first_word = first_text_freq()
-    print("Melanie's most frequent first text was \'%s\', and Noah's was \'%s\'." % (melanie_first_word, noah_first_word))
+    m_first_word, n_first_word = first_text_freq()
+    print("M's most frequent first text was \'%s\', and N's was \'%s\'." % (m_first_word, n_first_word))
 
-    melanie_word, noah_word = rarest_word()
-    print("Melanie's rarest word: %s (rarity: %.2f). Noah's rarest word: %s (rarity: %.2f)" % (melanie_word[1],melanie_word[0], noah_word[1], noah_word[0]))
+    m_word, n_word = rarest_word()
+    print("M's rarest word: %s (rarity: %.2f). N's rarest word: %s (rarity: %.2f)" % (m_word[1],m_word[0], n_word[1], n_word[0]))
 
 # Helper function that gets a list of datetime objects representing each text message 
 def get_texts_per_day(f):
@@ -69,13 +69,13 @@ def get_texts_per_day(f):
                 if (day, "M") in texts_per_day:
                     texts_per_day[(day, "M")][1] += 1
                 else:
-                    texts_per_day[(day, "M")] = [day, 1 , "Melanie"]
+                    texts_per_day[(day, "M")] = [day, 1 , "M"]
 
             elif (text[text.find("-")+2:text.find("-")+3] == "N"):
                 if (day, "N") in texts_per_day:
                     texts_per_day[(day, "N")][1] += 1
                 else:
-                    texts_per_day[(day, "N")] = [day, 1 , "Noah"]
+                    texts_per_day[(day, "N")] = [day, 1 , "N"]
 
     df = pd.DataFrame.from_dict(texts_per_day, orient='index', columns = ['Date', 'Number of Texts', 'Person'])
     return df
@@ -208,6 +208,7 @@ def calc_avg_texts_per_hour():
     fig.write_image("whatsappimages/hourlytextsboth.svg")
     f.close()
 
+# Determines the percentage of time each party sends the first text of the day
 def who_texts_first():
     f = open(file_name, "r", encoding='utf-8')
 
@@ -242,6 +243,7 @@ def who_texts_first():
     f.close()
     return(m_texted_first/total, n_texted_first/total)
 
+# Determines the rarest word each person uses (by inherent word rarity, not frequency used in this conversation)
 def rarest_word():
     f = open(file_name, "r", encoding='utf-8')
     d = enchant.Dict("en_US")
@@ -267,6 +269,7 @@ def rarest_word():
     f.close()
     return (lowest_freq_m, lowest_freq_n)
 
+# Determines the most frequent text each party sent as the first text of the day
 def first_text_freq():
     f = open(file_name, "r", encoding='utf-8')
 
