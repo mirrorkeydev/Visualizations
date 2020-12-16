@@ -105,19 +105,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   color: #bfc7d5ff !important;
 }
 
+/* table */
 .jp-RenderedHTMLCommon table {
   background: none !important;
   color: #bfc7d5ff !important;
 }
 
+/* odd lines of table */
 .jp-RenderedHTMLCommon tbody tr:nth-child(odd) {
   background: #212431 !important;
 }
 
+/* even lines of table */
 .jp-RenderedHTMLCommon tbody tr:nth-child(even) {
   background: #292d3e !important;
 }
 
+/* blockquotes */
+.jp-RenderedHTMLCommon blockquote {
+  border-left: 5px solid #9ca4b7 !important;
+}
+
+/* in-line code snippets */
+.jp-RenderedHTMLCommon :not(pre) > code {
+  background-color: #1d202b !important;
+  color: #cacaca !important;
+}
+
+/* code words */
 .highlight, .highlight .p {
   background:#1d202b !important;
   color: #bfc7d5ff !important;
@@ -15611,7 +15626,7 @@ Number of permutations left: 1
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>And indeed, they don't guess correctly (only 7/10), but it's enough to narrow down the number of permutations to 1.</p>
+<p>And indeed, they don't guess correctly (only 7/10), but it's enough to narrow down the number of permutations to 1, so they're easily able to secure the win.</p>
 
 </div>
 </div>
