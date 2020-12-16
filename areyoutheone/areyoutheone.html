@@ -134,7 +134,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   color: #82aaffff !important;
 }
 
-.highlight .s2, .highlight .se {
+.highlight .s2, .highlight .se,
+.highlight .s1 {
   color: #c3e689ff !important;
 }
 
@@ -14391,7 +14392,7 @@ a.anchor-link {
 <h2 id="Framework">Framework<a class="anchor-link" href="#Framework">&#182;</a></h2><p>In season 1, the house is comprised of 10 men and 10 women, each of which are part of exactly one hetero "perfect match". Let's initialize our values, and assign names to help visualize what's going on.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
@@ -14433,27 +14434,6 @@ a.anchor-link {
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>The number of possible match permutations is: 3628800
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -14511,17 +14491,17 @@ a.anchor-link {
 <pre>Configuration 0
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">   WESLEY   </span>
+<span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    JOHN    </span>
 
 Configuration 1
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span>
+<span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">   ETHAN    </span>
 
 Configuration 2
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span>
+<span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    JOHN    </span>
 
 ... and 3628797 more of these
 
@@ -14577,17 +14557,17 @@ This means that we can narrow down all permutations of the couples configuration
 <pre>Configuration 0
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span>
+<span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    DRE     </span>
 
 Configuration 1
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span>
+<span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">   ETHAN    </span>
 
 Configuration 2
 
 <span class="ansi-cyan-intense-fg">   AMBER    </span><span class="ansi-cyan-intense-fg">  ASHLEIGH  </span><span class="ansi-cyan-intense-fg">  BRITTANY  </span><span class="ansi-cyan-intense-fg">  COLEYSIA  </span><span class="ansi-cyan-intense-fg">    JACY    </span><span class="ansi-cyan-intense-fg">  JESSICA   </span><span class="ansi-cyan-intense-fg">   KAYLA    </span><span class="ansi-cyan-intense-fg">   PAIGE    </span><span class="ansi-cyan-intense-fg">  SHANLEY   </span><span class="ansi-cyan-intense-fg">   SIMONE   </span>
-<span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    DRE     </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span>
+<span class="ansi-magenta-intense-fg">  CHRIS_S   </span><span class="ansi-magenta-intense-fg">   WESLEY   </span><span class="ansi-magenta-intense-fg">    JOHN    </span><span class="ansi-magenta-intense-fg">    ADAM    </span><span class="ansi-magenta-intense-fg">    RYAN    </span><span class="ansi-magenta-intense-fg">   ETHAN    </span><span class="ansi-magenta-intense-fg">   DILLAN   </span><span class="ansi-magenta-intense-fg">  CHRIS_T   </span><span class="ansi-magenta-intense-fg">    JOEY    </span><span class="ansi-magenta-intense-fg">    DRE     </span>
 
 ... and 3265917 more of these
 
@@ -14688,7 +14668,7 @@ We&#39;ve narrowed down the number of permutations from 3628800 to 3265920, a re
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Match-Ceremony-1">Match Ceremony 1<a class="anchor-link" href="#Match-Ceremony-1">&#182;</a></h4><p>At the end of the week, a Match Ceremony occurs. At this point, all the contestants know is that it's not Shanley and Chris T., so they pair up pretty randomly.</p>
+<h4 id="Match-Ceremony-1">Match Ceremony 1<a class="anchor-link" href="#Match-Ceremony-1">&#182;</a></h4><p>At the end of the week, a Match Ceremony occurs. At this point, all the contestants know is that it's not Christ T. and Shanley, so they pair up pretty randomly.</p>
 <table>
 <thead><tr>
 <th>Men</th>
@@ -14717,7 +14697,7 @@ We&#39;ve narrowed down the number of permutations from 3628800 to 3265920, a re
 <td>Simone</td>
 </tr>
 <tr>
-<td>Christ T.</td>
+<td>Chris T.</td>
 <td>Jessica</td>
 </tr>
 <tr>
@@ -14738,9 +14718,10 @@ We&#39;ve narrowed down the number of permutations from 3628800 to 3265920, a re
 </tr>
 </tbody>
 </table>
-<p>The Match Ceremony reveals that two of these couples are correct. So how does that affect the probability of our couples?</p>
-<p>Now, to narrow down our list of permutations, we want to only select the permutations that contain exactly two couples from the Match Ceremony.</p>
-<p>If it's not quite clear why we do this, consider an example: couples Anya + Aaron, Brooklyn + Brook, and Carly + Charlie go to the Match Ceremony, which returns that one of the couples are a perfect match. Our total list of permutations for these couples is:</p>
+<p>The Match Ceremony reveals that two of these couples are correct. So how does that affect the probability of all of the couples?</p>
+<p>To narrow down our list of permutations, we want to <em>only select the permutations that contain exactly two couples from the Match Ceremony.</em></p>
+<blockquote><p>If it's not quite clear why we do this, consider an example:</p>
+<p>Couples <code>Anya</code> + <code>Aaron</code>, <code>Brooklyn</code> + <code>Brook</code>, and <code>Carly</code> + <code>Charlie</code> go to the Match Ceremony, which returns that one of the couples are a perfect match. Our total list of permutations for these couples is:</p>
 <table>
 <thead><tr>
 <th>Permutations</th>
@@ -14767,7 +14748,8 @@ We&#39;ve narrowed down the number of permutations from 3628800 to 3265920, a re
 </tr>
 </tbody>
 </table>
-<p>Very clearly, we can eliminate permutation 1, since it's what we just tested at the ceremony, and it only returned 1 couple as a perfect match. However, we can also eliminate permutations 4 and 5, since they don't contain a single couple from the set that we sent to the Match Ceremony. It would be impossible for those permutations to be the winning configuration, because one of the couples we just tested has to be a winner.</p>
+<p><br>
+Very clearly, we can eliminate permutation 1, since it's what we just tested at the ceremony, and it only returned 1 couple as a perfect match. However, we can also eliminate permutations 4 and 5, since they don't contain a single couple from the set that we sent to the Match Ceremony. It would be impossible for those permutations to be the winning configuration, because one of the couples we just tested has to be a winner.</p>
 <table>
 <thead><tr>
 <th>Permutations</th>
@@ -14794,7 +14776,9 @@ We&#39;ve narrowed down the number of permutations from 3628800 to 3265920, a re
 </tr>
 </tbody>
 </table>
-<p>Each of the remaining permutations contains exactly one couple; through a single ceremony, we were able to reduce the number of permutations by half.</p>
+<p>Each of the remaining permutations contains exactly one couple from the Match Ceremony; through a single ceremony, we were able to reduce the number of permutations by half. Since our example is pretty contrived, we weren't actually able to reduce the probabiity of any single couple (all couples are still equally likely to be correct, just not at the same time), but it's a good example of how you can eliminate combinations of couples: for example, we know now that <code>Anya</code> and <code>Brooklyn</code> cannot be a couple at the same time as <code>Brook</code> and <code>Charlie</code> (permutation 4).</p>
+</blockquote>
+<p>So let's apply the Match Ceremony's results to our couples:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14864,7 +14848,7 @@ We&#39;ve narrowed down the number of permutations from 3265920 to 608153, a red
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>From this, we can see the probabilities for a couple of different couples have increased, with Chris T. and Jessica now having a probability of 22.0%.</p>
+<p>From this, we can see that some couple combinations are now twice as likely to be correct than guessing randomly.</p>
 <h3 id="Episode-2">Episode 2<a class="anchor-link" href="#Episode-2">&#182;</a></h3><h4 id="Truth-Booth-2">Truth Booth 2<a class="anchor-link" href="#Truth-Booth-2">&#182;</a></h4><p>Ethan and Jessica are not a match.</p>
 
 </div>
