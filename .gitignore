@@ -2,3 +2,5 @@ chart*.svg
 whatsappimages
 settings.json
 *.txt
+.ipynb_checkpoints
+.vscode
